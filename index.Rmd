@@ -17,7 +17,8 @@ library(dplyr)
 gam_chordata <- 
   st_read(
     "https://raw.githubusercontent.com/atlas-servicios-ecosistemicos-gam/datos/master/biodiversidad/presencia/gam_chordata.geojson"
-  )
+  ) %>%
+  filter(phylum == "Chordata")
 
 # Registros de presencia de Mammalia en la GAM
 gam_mammalia <- 
@@ -108,6 +109,11 @@ m
 
 Row {data-height=200}
 -------------------------------------
+### especies de vertebrados
+```{r}
+valueBox(length(unique(gam_chordata[["species"]])), icon = "fa-pencil")
+```
+
 ### especies de _Mammalia_
 ```{r}
 valueBox(length(unique(gam_mammalia[["species"]])), icon = "fa-pencil")
